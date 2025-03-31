@@ -4,14 +4,16 @@
 import ImageComponents from './src/imageComponents'
 import ResizerOptions from './src/resizerOptions'
 
-addEventListener('fetch', (event) => {
-  /* Get the origin image if the request is from the resizer worker itself */
-  if (/image-resizing/.test(event.request.headers.get('via'))) {
-    event.respondWith(fetch(event.request))
-  } else {
-    event.respondWith(handleRequest(event.request))
+export default {
+  async fetch(request, env, ctx) {
+    /* Get the origin image if the request is from the resizer worker itself */
+    if (/image-resizing/.test(request.headers.get('via'))) {
+      return fetch(request)
+    } else {
+      return handleRequest(request)
+    }
   }
-})
+}
 
 async function handleRequest(request) {
   try {
