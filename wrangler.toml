@@ -4,5 +4,5 @@ compatibility_date = "2022-07-12"
 main = "./index.js"
 # type = "webpack"
 
-[compatibility_flags]
-nodejs_compat = true
+compatibility_flags = [ "nodejs_compat" ]
+compatibility_date = "2024-09-23"
